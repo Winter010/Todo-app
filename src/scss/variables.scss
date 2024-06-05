@@ -1,14 +1,36 @@
-$color-light-green: hsl(148, 38%, 91%);
-$color-green: hsl(169, 82%, 27%);
-$color-red: hsl(0, 68%, 56%);
-$color-white: hsl(0, 0%, 100%);
-$color-medium-grey: hsl(186, 15%, 59%);
-$color-dark-grey: hsl(187, 24%, 22%);
+// Dark theme
 
-// $color-light-green -> body background, radio:active, success-message color
-// $color-green -> submit-btn
-// $color-red -> form-alert
+$color-very-dark-blue: hsl(235, 21%, 11%);
+$color-very-dark-desaturated-blue: hsl(235, 24%, 19%);
+$color-light-grayish-blue: hsl(234, 39%, 85%); 
+$color-light-grayish-blue-hover: hsl(236, 33%, 92%);
+$color-dark-grayish-blue: hsl(234, 11%, 52%);
+$color-very-dark-grayish-blue: hsl(233, 14%, 35%);
+$color-very-dark-grayish-blue: hsl(237, 14%, 26%);
 
-// $color-white -> form background, submit-btn color
-// $color-medium-grey -> inputs border
-// $color-dark-grey -> h1, label, submit-btn:hover, success-message background
+// Light theme
+
+$color-very-light-gray: hsl(0, 0%, 98%);
+$color-very-light-grayish-blue: hsl(236, 33%, 92%);
+$color-light-grayish-blue: hsl(233, 11%, 84%);
+$color-dark-grayish-blue: hsl(236, 9%, 61%);
+$color-very-dark-grayish-blue: hsl(235, 19%, 35%);
+
+
+// Dark theme
+
+// $color-very-dark-blue: hsl(235, 21%, 11%); -> bg color
+// $color-very-dark-desaturated-blue: hsl(235, 24%, 19%);
+// $color-light-grayish-blue: hsl(234, 39%, 85%);  -> font color
+// $color-light-grayish-blue-hover: hsl(236, 33%, 92%);
+// $color-dark-grayish-blue: hsl(234, 11%, 52%);
+// $color-very-dark-grayish-blue: hsl(233, 14%, 35%);
+// $color-very-dark-grayish-blue: hsl(237, 14%, 26%);
+
+// Light theme
+
+// $color-very-light-gray: hsl(0, 0%, 98%);
+// $color-very-light-grayish-blue: hsl(236, 33%, 92%);
+// $color-light-grayish-blue: hsl(233, 11%, 84%);
+// $color-dark-grayish-blue: hsl(236, 9%, 61%);
+// $color-very-dark-grayish-blue: hsl(235, 19%, 35%);
