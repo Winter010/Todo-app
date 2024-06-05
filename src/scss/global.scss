@@ -1,5 +1,5 @@
 @import "./variables.scss";
-// @import "./mixins/flex.scss";
+@import "./mixins/flex.scss";
 @import "./mixins/fonts.scss";
 
 html {
@@ -27,11 +27,15 @@ html {
 }
 
 body {
+	@include flexColumn;
 	@include fontJosefinSansNormal;
-	background-color: $color-very-dark-blue;
+	align-items: center;
 	font-size: 18px;
-	color: $color-light-grayish-blue;
 	min-height: 100vh;
+	color: $color-light-grayish-blue;
+	background: url(/backgrounds/dark-theme/bg-desktop-dark.jpg) no-repeat;
+	background-size: contain;
+	background-color: $color-very-dark-blue;
 }
 
 a {

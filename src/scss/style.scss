@@ -1,1 +1,39 @@
 @import "./global.scss";
+
+header,
+main {
+	width: 550px;
+}
+
+header {
+	@include flexRow;
+	@include fontJosefinSansNormal;
+	justify-content: space-between;
+	letter-spacing: 1.1em;
+	margin-top: 100px;
+
+	.theme-switch-block {
+		@include flexColumn;
+		justify-content: center;
+		margin-right: 10px;
+
+		#theme-toggle {
+			display: none;
+
+			& + label::before {
+				content: "";
+				background: url("/icons/icon-sun.svg") no-repeat;
+				display: block;
+				width: 32px;
+				height: 32px;
+				cursor: pointer;
+			}
+		}
+
+		#theme-toggle:checked {
+			& + label::before {
+				background: url("/icons/icon-moon.svg") no-repeat;
+			}
+		}
+	}
+}
