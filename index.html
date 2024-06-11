@@ -16,7 +16,7 @@
 	<body class="theme-dark">
 		<header>
 			<h1>TODO</h1>
-			<div class="theme-switch-block">
+			<div class="theme-toggle-block">
 				<input type="checkbox" name="theme-toggle" id="theme-toggle" />
 				<label for="theme-toggle"></label>
 			</div>
@@ -25,13 +25,62 @@
 		<main>
 			<div class="add-new-todo">
 				<div></div>
-				<input type="text" placeholder="Create a new todo...">
+				<input type="text" placeholder="Create a new todo..." />
 			</div>
-
+			<section class="content">
+				<ul class="todo-list">
+					<li class="todo-list__item">
+						<label>
+							<input type="checkbox" />
+							<div class="todo-list__checkmark"></div>
+							<span>Todo-1</span>
+						</label>
+						<div class="todo-list__remove-item"></div>
+					</li>
+					<li class="todo-list__item">
+						<label>
+							<input type="checkbox" />
+							<div class="todo-list__checkmark"></div>
+							<span>Todo-1</span>
+						</label>
+						<div class="todo-list__remove-item"></div>
+					</li>
+					<li class="todo-list__item">
+						<label>
+							<input type="checkbox" />
+							<div class="todo-list__checkmark"></div>
+							<span>Todo-1</span>
+						</label>
+						<div class="todo-list__remove-item"></div>
+					</li>
+					<li class="todo-list__item">
+						<label>
+							<input type="checkbox" />
+							<div class="todo-list__checkmark"></div>
+							<span>Todo-1</span>
+						</label>
+						<div class="todo-list__remove-item"></div>
+					</li>
+				</ul>
+				<div class="task-bar">
+					<span class="items-left">1 items left</span>
+					<div class="task-bar__filter">
+						<label for="filter">
+							<input type="radio" name="filter" id="all" checked />
+							<span>All</span>
+						</label>
+						<label for="filter">
+							<input type="radio" name="filter" id="active" />
+							<span>Active</span>
+						</label>
+						<label for="filter">
+							<input type="radio" name="filter" id="completed" />
+							<span>Completed</span>
+						</label>
+					</div>
+					<span class="clear-tasks">Clear completed</span>
+				</div>
+			</section>
 		</main>
-
-		<!-- Add dynamic number -->
-		<!-- items left All Active Completed Clear Completed Drag and drop to reorder
-		list -->
 	</body>
 </html>
