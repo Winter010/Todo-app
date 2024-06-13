@@ -25,41 +25,33 @@
 		<main>
 			<div class="add-new-todo">
 				<div></div>
-				<input type="text" placeholder="Create a new todo..." id="task-input"/>
+				<input type="text" placeholder="Create a new todo..." id="task-input" />
 			</div>
 			<section class="content">
 				<ul class="todo-list">
 					<li class="todo-list__item">
 						<label>
-							<input type="checkbox" />
+							<input type="checkbox" name="complete-task" />
 							<div class="todo-list__checkmark"></div>
 							<span>Todo-1</span>
 						</label>
-						<div class="todo-list__remove-item"></div>
+						<div class="todo-list__remove-item" data-action="delete"></div>
 					</li>
 					<li class="todo-list__item">
 						<label>
-							<input type="checkbox" />
+							<input type="checkbox" name="complete-task" />
 							<div class="todo-list__checkmark"></div>
-							<span>Todo-1</span>
+							<span>Todo-2</span>
 						</label>
-						<div class="todo-list__remove-item"></div>
+						<div class="todo-list__remove-item" data-action="delete"></div>
 					</li>
 					<li class="todo-list__item">
 						<label>
-							<input type="checkbox" />
+							<input type="checkbox" name="complete-task" />
 							<div class="todo-list__checkmark"></div>
-							<span>Todo-1</span>
+							<span>Todo-3</span>
 						</label>
-						<div class="todo-list__remove-item"></div>
-					</li>
-					<li class="todo-list__item">
-						<label>
-							<input type="checkbox" />
-							<div class="todo-list__checkmark"></div>
-							<span>Todo-1</span>
-						</label>
-						<div class="todo-list__remove-item"></div>
+						<div class="todo-list__remove-item" data-action="delete"></div>
 					</li>
 				</ul>
 				<div class="task-bar">

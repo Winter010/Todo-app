@@ -1,6 +1,6 @@
 const input = document.getElementById("task-input");
 
-const tasksContainer = document.querySelector(".todo-list");
+const tasksList = document.querySelector(".todo-list");
 
 const itemsLeft = document.querySelector(".items-left");
 
@@ -9,28 +9,38 @@ const displayItemsLeft = () => {
 	itemsLeft.innerHTML = `${allTasks.length} items left`;
 };
 
-const addTask = taskName => {
+displayItemsLeft();
+
+const addTask = event => {
 	const taskTemplate = `
-	<li class="todo-list__item">
+<li class="todo-list__item">
 	<label>
-	<input type="checkbox" />
-	<div class="todo-list__checkmark"></div>
-	<span>${taskName}</span>
+		<input type="checkbox" name="complete-task" />
+		<div class="todo-list__checkmark"></div>
+		<span>${input.value}</span>
 	</label>
-	<div class="todo-list__remove-item"></div>
-	</li>
+	<div class="todo-list__remove-item" data-action="delete"></div>
+</li>
 	`;
 
-	if (input.value.trim() !== "") {
-		tasksContainer.insertAdjacentHTML("beforeend", taskTemplate);
+	if (event.key === "Enter") {
+		if (input.value.trim() !== "") {
+			tasksList.insertAdjacentHTML("beforeend", taskTemplate);
+			input.value = "";
+		}
+	}
 
-		input.value = "";
+	displayItemsLeft();
+};
+
+const deleteTask = event => {
+	if (event.target.dataset.action === "delete") {
+		const parentNode = event.target.closest("li");
+		parentNode.remove();
 	}
 	displayItemsLeft();
 };
 
-displayItemsLeft();
+input.addEventListener("keypress", addTask);
 
-input.addEventListener("keypress", event => {
-	event.key === "Enter" ? addTask(input.value) : null;
-});
+tasksList.addEventListener("click", deleteTask);
