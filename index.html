@@ -8,16 +8,75 @@
 			rel="icon"
 			type="image/png"
 			sizes="32x32"
-			href="./images/favicon-32x32.png"
+			href="/favicon/favicon-32x32.png"
 		/>
 		<link rel="stylesheet" href="./src/scss/style.scss" />
 		<title>Todo app</title>
 	</head>
-	<body>
-		Todo
-		
-		<!-- Add dynamic number -->
-		<!-- items left All Active Completed Clear Completed Drag and drop to reorder
-		list -->
+	<body class="theme-dark">
+		<header>
+			<h1>TODO</h1>
+			<div class="theme-toggle-block">
+				<input type="checkbox" name="theme-toggle" id="theme-toggle" />
+				<label for="theme-toggle"></label>
+			</div>
+		</header>
+
+		<main>
+			<div class="add-new-todo">
+				<div></div>
+				<input type="text" placeholder="Create a new todo..." id="task-input" />
+			</div>
+			<section class="content">
+				<ul class="todo-list">
+					<li class="todo-list__item">
+						<label>
+							<input type="checkbox" name="complete-task" />
+							<div class="todo-list__checkmark"></div>
+							<span>Todo-1</span>
+						</label>
+						<div class="todo-list__remove-item" data-action="delete"></div>
+					</li>
+					<li class="todo-list__item">
+						<label>
+							<input type="checkbox" name="complete-task" />
+							<div class="todo-list__checkmark"></div>
+							<span>Todo-2</span>
+						</label>
+						<div class="todo-list__remove-item" data-action="delete"></div>
+					</li>
+					<li class="todo-list__item">
+						<label>
+							<input type="checkbox" name="complete-task" />
+							<div class="todo-list__checkmark"></div>
+							<span>Todo-3</span>
+						</label>
+						<div class="todo-list__remove-item" data-action="delete"></div>
+					</li>
+				</ul>
+				<div class="task-bar">
+					<span class="items-left" id="test">? items left</span>
+					<!-- 
+					need to fix click area 
+					 -->
+					<div class="task-bar__filter">
+						<label for="filter">
+							<input type="radio" name="filter" id="all" checked />
+							<span>All</span>
+						</label>
+						<label for="filter">
+							<input type="radio" name="filter" id="active" />
+							<span>Active</span>
+						</label>
+						<label for="filter">
+							<input type="radio" name="filter" id="completed" />
+							<span>Completed</span>
+						</label>
+					</div>
+					<span class="clear-tasks">Clear completed</span>
+				</div>
+			</section>
+		</main>
+		<script src="./src/js/script.js"></script>
 	</body>
 </html>

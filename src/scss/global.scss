@@ -1,22 +1,22 @@
 @import "./variables.scss";
-// @import "./mixins/flex.scss";
-// @import "./mixins/fonts.scss";
+@import "./mixins/flex.scss";
+@import "./mixins/fonts.scss";
 
 html {
 	box-sizing: border-box;
 }
 
-// @font-face {
-// 	@include fontKarlaNormal;
-// 	src: url(/fonts/static/Karla-Regular.ttf);
-// 	font-style: normal;
-// }
+@font-face {
+	@include fontJosefinSansNormal;
+	src: url(/fonts/static/JosefinSans-Regular.ttf);
+	font-style: normal;
+}
 
-// @font-face {
-// 	@include fontKarlaBold;
-// 	src: url(/fonts/static/Karla-Bold.ttf);
-// 	font-style: normal;
-// }
+@font-face {
+	@include fontJosefinSansBold;
+	src: url(/fonts/static/JosefinSans-Bold.ttf);
+	font-style: normal;
+}
 
 *,
 *::after,
@@ -26,18 +26,21 @@ html {
 	margin: 0;
 }
 
+body {
+	@include flexColumn;
+	@include fontJosefinSansNormal;
+	align-items: center;
+	font-size: 18px;
+	min-height: 100vh;
+	color: $color-dtheme-light-grayish-blue;
+	background: url(/backgrounds/dark-theme/bg-desktop-dark.jpg) no-repeat;
+	background-size: contain;
+	background-color: $color-dtheme-very-dark-blue;
+}
+
 a {
 	color: initial;
 	text-decoration: none;
-}
-body {
-	// @include fontKarlaNormal;
-	// display: grid;
-	// place-content: center;
-	// background-color: $color-light-green;
-	// font-size: 16px;
-	// color: hsl(186, 15%, 59%);
-	min-height: 100vh;
 }
 
 ul li {
