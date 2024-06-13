@@ -1,13 +1,15 @@
-const itemsLeft = document.querySelector(".items-left");
+const input = document.getElementById("task-input");
+
 const tasksContainer = document.querySelector(".todo-list");
 
-function displayItemsLeft() {
+const itemsLeft = document.querySelector(".items-left");
+
+const displayItemsLeft = () => {
 	const allTasks = document.querySelectorAll(".todo-list__item");
 	itemsLeft.innerHTML = `${allTasks.length} items left`;
-}
+};
 
-
-function addTask(taskName) {
+const addTask = taskName => {
 	const taskTemplate = `
 	<li class="todo-list__item">
 	<label>
@@ -18,10 +20,17 @@ function addTask(taskName) {
 	<div class="todo-list__remove-item"></div>
 	</li>
 	`;
-	
-	tasksContainer.insertAdjacentHTML("beforeend", taskTemplate);
+
+	if (input.value.trim() !== "") {
+		tasksContainer.insertAdjacentHTML("beforeend", taskTemplate);
+
+		input.value = "";
 	}
-	
-	addTask("test");
-	
 	displayItemsLeft();
+};
+
+displayItemsLeft();
+
+input.addEventListener("keypress", event => {
+	event.key === "Enter" ? addTask(input.value) : null;
+});
