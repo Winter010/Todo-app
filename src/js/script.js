@@ -2,7 +2,9 @@ const input = document.getElementById("task-input");
 const tasksList = document.querySelector(".todo-list");
 const itemsLeft = document.querySelector(".items-left");
 
-const tasksArray = [];
+const tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
+
+console.log(tasksArray);
 
 const updateTaskCount = () =>
 	(itemsLeft.innerText = `${tasksArray.length} items left`);
@@ -39,6 +41,7 @@ const addTask = event => {
 		input.value = "";
 
 		updateTaskCount();
+		localStorage.setItem("tasks", JSON.stringify(tasksArray));
 	}
 };
 
@@ -50,6 +53,7 @@ const deleteTask = event => {
 
 		parentNode.remove();
 		updateTaskCount();
+		localStorage.setItem("tasks", JSON.stringify(tasksArray));
 	}
 };
 
