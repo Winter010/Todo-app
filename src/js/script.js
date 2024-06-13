@@ -2,14 +2,25 @@ const input = document.getElementById("task-input");
 const tasksList = document.querySelector(".todo-list");
 const itemsLeft = document.querySelector(".items-left");
 
-const displayItemsLeft = () => {
-	const allTasks = document.querySelectorAll(".todo-list__item");
-	itemsLeft.innerText = `${allTasks.length} items left`;
-};
-
-displayItemsLeft();
-
 const tasksArray = [];
+
+const updateTaskCount = () =>
+	(itemsLeft.innerText = `${tasksArray.length} items left`);
+
+updateTaskCount();
+
+const createTaskElement = task => {
+	return `
+			<li class="todo-list__item" id="${task.id}">
+					<label>
+							<input type="checkbox" name="complete-task" />
+							<div class="todo-list__checkmark"></div>
+							<span>${task.text}</span>
+					</label>
+					<div class="todo-list__remove-item" data-action="delete"></div>
+			</li>
+	`;
+};
 
 const addTask = event => {
 	const taskText = input.value;
@@ -20,22 +31,14 @@ const addTask = event => {
 			text: taskText,
 			isDone: false,
 		};
-		const taskTemplate = `
-			<li class="todo-list__item" id="${newTask.id}">
-				<label>
-					<input type="checkbox" name="complete-task" />
-					<div class="todo-list__checkmark"></div>
-					<span>${newTask.text}</span>
-				</label>
-				<div class="todo-list__remove-item" data-action="delete"></div>
-			</li>
-		`;
+
+		const taskTemplate = createTaskElement(newTask);
 
 		tasksArray.push(newTask);
 		tasksList.insertAdjacentHTML("beforeend", taskTemplate);
 		input.value = "";
 
-		displayItemsLeft();
+		updateTaskCount();
 	}
 };
 
@@ -46,7 +49,7 @@ const deleteTask = event => {
 		tasksArray.splice(index, 1);
 
 		parentNode.remove();
-		displayItemsLeft();
+		updateTaskCount();
 	}
 };
 
