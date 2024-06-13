@@ -4,25 +4,28 @@ const itemsLeft = document.querySelector(".items-left");
 
 const tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
-console.log(tasksArray);
-
 const updateTaskCount = () =>
 	(itemsLeft.innerText = `${tasksArray.length} items left`);
-
 updateTaskCount();
 
 const createTaskElement = task => {
 	return `
-			<li class="todo-list__item" id="${task.id}">
-					<label>
-							<input type="checkbox" name="complete-task" />
-							<div class="todo-list__checkmark"></div>
-							<span>${task.text}</span>
-					</label>
-					<div class="todo-list__remove-item" data-action="delete"></div>
-			</li>
+	<li class="todo-list__item" id="${task.id}">
+	<label>
+	<input type="checkbox" name="complete-task" />
+	<div class="todo-list__checkmark"></div>
+	<span>${task.text}</span>
+	</label>
+	<div class="todo-list__remove-item" data-action="delete"></div>
+	</li>
 	`;
 };
+
+if (tasksArray.length > 0) {
+	tasksArray.forEach(task =>
+		tasksList.insertAdjacentHTML("beforeend", createTaskElement(task))
+	);
+}
 
 const addTask = event => {
 	const taskText = input.value;
