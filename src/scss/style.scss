@@ -85,21 +85,23 @@ main {
 					align-items: center;
 					gap: 15px;
 					padding: 15px 15px 15px 20px;
+					cursor: pointer;
+
+					&:hover input[type="checkbox"] ~ .todo-list__checkmark {
+						border: 1px solid hsl(209, 100%, 67%);
+					}
 				}
 
 				input[type="checkbox"] {
 					position: absolute;
 					opacity: 0;
+					cursor: pointer;
 
 					& ~ .todo-list__checkmark {
 						border: 1px solid $color-dtheme-very-dark-grayish-blue;
 						width: 28px;
 						height: 28px;
 						border-radius: 50%;
-						cursor: pointer;
-						&:hover {
-							border: 1px solid hsl(209, 100%, 67%);
-						}
 					}
 
 					&:checked ~ span {
