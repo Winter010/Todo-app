@@ -9,10 +9,11 @@ const updateTaskCount = () =>
 updateTaskCount();
 
 const createTaskElement = task => {
+	const isDone = task.isDone === true ? "checked" : "";
 	return `
 	<li class="todo-list__item" id="${task.id}">
 	<label>
-	<input type="checkbox" name="complete-task" />
+	<input type="checkbox" ${isDone} />
 	<div class="todo-list__checkmark"></div>
 	<span>${task.text}</span>
 	</label>
@@ -69,7 +70,6 @@ const toggleTaskCompletion = event => {
 	if (event.target.tagName === "INPUT") {
 		const { index } = getTaskInfo(event);
 		tasksArray[index].isDone = !tasksArray[index].isDone;
-		console.log(tasksArray[index]);
 		localStorage.setItem("tasks", JSON.stringify(tasksArray));
 	}
 };
