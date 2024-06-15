@@ -28,9 +28,9 @@ if (tasksArray.length > 0) {
 }
 
 const addTask = event => {
-	const taskText = input.value;
+	const taskText = input.value.trim();
 
-	if (event.key === "Enter" && taskText.trim() !== "") {
+	if (event.key === "Enter" && taskText !== "") {
 		const newTask = {
 			id: Date.now(),
 			text: taskText,
@@ -48,10 +48,15 @@ const addTask = event => {
 	}
 };
 
+const getTaskInfo = event => {
+	const parentNode = event.target.closest("li");
+	const index = tasksArray.findIndex(task => task.id == parentNode.id);
+	return { parentNode, index };
+};
+
 const deleteTask = event => {
 	if (event.target.dataset.action === "delete") {
-		const parentNode = event.target.closest("li");
-		const index = tasksArray.findIndex(task => task.id == parentNode.id);
+		const { parentNode, index } = getTaskInfo(event);
 		tasksArray.splice(index, 1);
 
 		parentNode.remove();
@@ -60,5 +65,15 @@ const deleteTask = event => {
 	}
 };
 
+const toggleTaskCompletion = event => {
+	if (event.target.tagName === "INPUT") {
+		const { index } = getTaskInfo(event);
+		tasksArray[index].isDone = !tasksArray[index].isDone;
+		console.log(tasksArray[index]);
+		localStorage.setItem("tasks", JSON.stringify(tasksArray));
+	}
+};
+
 input.addEventListener("keypress", addTask);
 tasksList.addEventListener("click", deleteTask);
+tasksList.addEventListener("click", toggleTaskCompletion);
