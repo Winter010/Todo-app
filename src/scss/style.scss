@@ -147,11 +147,12 @@ main {
 				label {
 					@include flexRow;
 					justify-content: center;
+					position: relative;
 					input[type="radio"] {
 						position: absolute;
 						cursor: pointer;
 						opacity: 0;
-						width: 25px;
+						width: 100%;
 						&:hover ~ span {
 							color: $color-dtheme-light-grayish-blue-hover;
 						}
