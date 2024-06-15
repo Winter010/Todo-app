@@ -1,12 +1,12 @@
 const input = document.getElementById("task-input");
 const tasksList = document.querySelector(".todo-list");
 const itemsLeft = document.querySelector(".items-left");
+const clearTasks = document.querySelector(".clear-tasks");
 
-const tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
+let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
 const updateTaskCount = () =>
-	(itemsLeft.innerText = `${tasksArray.length} items left`);
-updateTaskCount();
+	(itemsLeft.innerText = `${tasksList.childElementCount} items left`);
 
 const createTaskElement = task => {
 	const isDone = task.isDone === true ? "checked" : "";
@@ -22,11 +22,15 @@ const createTaskElement = task => {
 	`;
 };
 
-if (tasksArray.length > 0) {
-	tasksArray.forEach(task =>
-		tasksList.insertAdjacentHTML("beforeend", createTaskElement(task))
-	);
-}
+const renderTasks = () => {
+	if (tasksArray.length > 0) {
+		tasksArray.forEach(task =>
+			tasksList.insertAdjacentHTML("beforeend", createTaskElement(task))
+		);
+	}
+	updateTaskCount();
+};
+renderTasks();
 
 const addTask = event => {
 	const taskText = input.value.trim();
@@ -74,6 +78,18 @@ const toggleTaskCompletion = event => {
 	}
 };
 
+const clearCompletedTask = () => {
+	tasksArray = tasksArray.filter(task => {
+		if (task.isDone === false) {
+			return task;
+		}
+	});
+	tasksList.innerText = "";
+	renderTasks();
+	localStorage.setItem("tasks", JSON.stringify(tasksArray));
+};
+
 input.addEventListener("keypress", addTask);
 tasksList.addEventListener("click", deleteTask);
 tasksList.addEventListener("click", toggleTaskCompletion);
+clearTasks.addEventListener("click", clearCompletedTask);
