@@ -1,6 +1,7 @@
 const input = document.getElementById("task-input");
 const tasksList = document.querySelector(".todo-list");
 const itemsLeft = document.querySelector(".items-left");
+const tasksFilters = document.querySelector(".task-bar__filter");
 const clearTasks = document.querySelector(".clear-tasks");
 
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -12,6 +13,7 @@ tasksList.addEventListener("click", event => {
 	if (event.target.dataset.action === "delete") deleteTask(event);
 	if (event.target.tagName === "INPUT") toggleTaskCompletion(event);
 });
+tasksFilters.addEventListener("click", filterTasks);
 clearTasks.addEventListener("click", clearCompletedTasks);
 
 function addTask(event) {
@@ -76,10 +78,23 @@ function clearCompletedTasks() {
 	saveToLocalStorage();
 }
 
-function renderTasks() {
+function filterTasks() {
+	const radioInput = document.querySelector(`input[name="filter"]:checked`);
+
+	const filterOptions = {
+		all: tasksArray,
+		active: tasksArray.filter(task => !task.isDone),
+		completed: tasksArray.filter(task => task.isDone),
+	};
+
+	const filteredTasks = filterOptions[radioInput.id] || [];
+	renderTasks(filteredTasks);
+}
+
+function renderTasks(array = tasksArray) {
 	tasksList.innerText = "";
-	if (tasksArray.length > 0) {
-		tasksArray.forEach(task =>
+	if (array.length > 0) {
+		array.forEach(task =>
 			tasksList.insertAdjacentHTML("beforeend", createTaskElement(task))
 		);
 	}
