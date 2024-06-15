@@ -1,0 +1,77 @@
+.theme-white {
+	color: $color-ltheme-very-dark-grayish-blue;
+	background: url(/backgrounds/light-theme/bg-desktop-light.jpg) no-repeat;
+	background-size: contain;
+	background-color: $color-ltheme-very-light-gray;
+	header {
+		color: $color-ltheme-very-light-gray;
+	}
+
+	main {
+		.add-new-todo {
+			background-color: $color-ltheme-very-light-gray;
+
+			input {
+				background-color: $color-ltheme-very-light-gray;
+				color: $color-ltheme-very-dark-grayish-blue;
+			}
+
+			div {
+				border: 1px solid $color-ltheme-very-light-grayish-blue;
+			}
+		}
+
+		.content {
+			background-color: $color-ltheme-very-light-gray;
+			box-shadow: 0px 15px 25px 1px $color-ltheme-very-light-grayish-blue;
+
+			.todo-list {
+				.todo-list__item {
+					border-bottom: 1px solid $color-ltheme-very-light-grayish-blue;
+
+					label {
+						&:hover input[type="checkbox"] ~ .todo-list__checkmark {
+							border: 1px solid hsl(209, 100%, 67%);
+						}
+					}
+
+					input[type="checkbox"] {
+						& ~ .todo-list__checkmark {
+							border: 1px solid $color-ltheme-very-light-grayish-blue;
+						}
+
+						&:checked ~ span {
+							//
+							color: $color-ltheme-dark-grayish-blue;
+						}
+						&:checked ~ .todo-list__checkmark {
+							background: center url(/icons/icon-check.svg) no-repeat,
+								linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+						}
+					}
+				}
+			}
+			.task-bar {
+				color: $color-ltheme-dark-grayish-blue;
+
+				.task-bar__filter {
+					label {
+						input[type="radio"] {
+							&:hover ~ span {
+								color: $color-ltheme-very-dark-grayish-blue;
+							}
+							&:checked ~ span {
+								color: hsl(209, 100%, 67%);
+							}
+						}
+					}
+				}
+			}
+			.clear-tasks {
+				&:hover {
+					color: $color-ltheme-very-dark-grayish-blue;
+				}
+			}
+		}
+	}
+}
