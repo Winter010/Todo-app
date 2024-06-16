@@ -1,6 +1,7 @@
 const input = document.getElementById("task-input");
 const tasksList = document.querySelector(".todo-list");
 const itemsLeft = document.querySelector(".items-left");
+const tasksFilters = document.querySelector(".task-bar__filter");
 const clearTasks = document.querySelector(".clear-tasks");
 
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -12,6 +13,7 @@ tasksList.addEventListener("click", event => {
 	if (event.target.dataset.action === "delete") deleteTask(event);
 	if (event.target.tagName === "INPUT") toggleTaskCompletion(event);
 });
+tasksFilters.addEventListener("click", filterTasks);
 clearTasks.addEventListener("click", clearCompletedTasks);
 
 function addTask(event) {
@@ -66,20 +68,40 @@ function toggleTaskCompletion(event) {
 
 function getTaskInfo(event) {
 	const parentNode = event.target.closest("li");
-	const index = tasksArray.findIndex(task => task.id == parentNode.id);
+	const index = tasksArray.findIndex(task => task.id === Number(parentNode.id));
 	return { parentNode, index };
 }
 
 function clearCompletedTasks() {
-	tasksArray = tasksArray.filter(task => !task.isDone);
-	renderTasks();
+	const doneTasks = filteredArrays().completed;
+	doneTasks.forEach(task => {
+		document.getElementById(`${task.id}`).remove();
+	});
+
+	tasksArray = filteredArrays().active;
+	updateTaskCount();
 	saveToLocalStorage();
 }
 
-function renderTasks() {
-	tasksList.innerText = "";
-	if (tasksArray.length > 0) {
-		tasksArray.forEach(task =>
+function filterTasks() {
+	const radioInput = document.querySelector(`input[name="filter"]:checked`);
+
+	const filteredTasks = filteredArrays()[radioInput.id] || [];
+	renderTasks(filteredTasks);
+}
+
+function filteredArrays() {
+	return {
+		all: tasksArray,
+		active: tasksArray.filter(task => !task.isDone),
+		completed: tasksArray.filter(task => task.isDone),
+	};
+}
+
+function renderTasks(array = tasksArray) {
+	tasksList.innerHTML = "";
+	if (array.length > 0) {
+		array.forEach(task =>
 			tasksList.insertAdjacentHTML("beforeend", createTaskElement(task))
 		);
 	}

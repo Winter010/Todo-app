@@ -1,0 +1,91 @@
+.theme-dark {
+	color: $color-dtheme-light-grayish-blue;
+	background: url(/backgrounds/dark-theme/bg-desktop-dark.jpg) no-repeat;
+	background-size: contain;
+	background-color: $color-dtheme-very-dark-blue;
+	header {
+		.theme-toggle-block {
+			#theme-toggle {
+				& + label::before {
+					content: "";
+					background: url("/icons/icon-sun.svg") no-repeat;
+				}
+			}
+
+			#theme-toggle:checked {
+				& + label::before {
+					background: url("/icons/icon-moon.svg") no-repeat;
+					transition: all 0.3s ease-in-out;
+				}
+			}
+		}
+	}
+
+	main {
+		.add-new-todo {
+			background-color: $color-dtheme-very-dark-desaturated-blue;
+
+			input {
+				background-color: $color-dtheme-very-dark-desaturated-blue;
+				color: $color-dtheme-light-grayish-blue;
+			}
+
+			div {
+				border: 1px solid $color-dtheme-very-dark-grayish-blue;
+			}
+		}
+
+		.content {
+			background-color: $color-dtheme-very-dark-desaturated-blue;
+			box-shadow: 0px 15px 20px 1px $color-dtheme-very-dark-blue;
+
+			.todo-list {
+				.todo-list__item {
+					border-bottom: 1px solid $color-dtheme-very-dark-grayish-blue;
+
+					label {
+						&:hover input[type="checkbox"] ~ .todo-list__checkmark {
+							border: 1px solid hsl(209, 100%, 67%);
+						}
+					}
+
+					input[type="checkbox"] {
+						& ~ .todo-list__checkmark {
+							border: 1px solid $color-dtheme-very-dark-grayish-blue;
+						}
+
+						&:checked ~ span {
+							text-decoration: line-through;
+							color: $color-dtheme-dark-grayish-blue;
+						}
+						&:checked ~ .todo-list__checkmark {
+							background: center url(/icons/icon-check.svg) no-repeat,
+								linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+						}
+					}
+				}
+			}
+			.task-bar {
+				color: $color-dtheme-dark-grayish-blue;
+
+				.task-bar__filter {
+					label {
+						input[type="radio"] {
+							&:hover ~ span {
+								color: $color-dtheme-light-grayish-blue-hover;
+							}
+							&:checked ~ span {
+								color: hsl(209, 100%, 67%);
+							}
+						}
+					}
+				}
+			}
+			.clear-tasks {
+				&:hover {
+					color: $color-dtheme-light-grayish-blue-hover;
+				}
+			}
+		}
+	}
+}
