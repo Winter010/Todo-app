@@ -78,7 +78,7 @@ function clearCompletedTasks() {
 		document.getElementById(`${task.id}`).remove();
 	});
 
-	tasksArray = filteredArrays().active;
+	tasksArray = filterArrays().active;
 	updateTaskCount();
 	saveToLocalStorage();
 }
@@ -86,11 +86,11 @@ function clearCompletedTasks() {
 function filterTasks() {
 	const radioInput = document.querySelector(`input[name="filter"]:checked`);
 
-	const filteredTasks = filteredArrays()[radioInput.id] || [];
+	const filteredTasks = filterArrays()[radioInput.id] || [];
 	renderTasks(filteredTasks);
 }
 
-function filteredArrays() {
+function filterArrays() {
 	return {
 		all: tasksArray,
 		active: tasksArray.filter(task => !task.isDone),
