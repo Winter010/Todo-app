@@ -68,31 +68,38 @@ function toggleTaskCompletion(event) {
 
 function getTaskInfo(event) {
 	const parentNode = event.target.closest("li");
-	const index = tasksArray.findIndex(task => task.id == parentNode.id);
+	const index = tasksArray.findIndex(task => task.id === Number(parentNode.id));
 	return { parentNode, index };
 }
 
 function clearCompletedTasks() {
-	tasksArray = tasksArray.filter(task => !task.isDone);
-	renderTasks();
+	const doneTasks = filteredArrays().completed;
+	doneTasks.forEach(task => {
+		document.getElementById(`${task.id}`).remove();
+	});
+
+	tasksArray = filteredArrays().active;
+	updateTaskCount();
 	saveToLocalStorage();
 }
 
 function filterTasks() {
 	const radioInput = document.querySelector(`input[name="filter"]:checked`);
 
-	const filterOptions = {
+	const filteredTasks = filteredArrays()[radioInput.id] || [];
+	renderTasks(filteredTasks);
+}
+
+function filteredArrays() {
+	return {
 		all: tasksArray,
 		active: tasksArray.filter(task => !task.isDone),
 		completed: tasksArray.filter(task => task.isDone),
 	};
-
-	const filteredTasks = filterOptions[radioInput.id] || [];
-	renderTasks(filteredTasks);
 }
 
 function renderTasks(array = tasksArray) {
-	tasksList.innerText = "";
+	tasksList.innerHTML = "";
 	if (array.length > 0) {
 		array.forEach(task =>
 			tasksList.insertAdjacentHTML("beforeend", createTaskElement(task))
