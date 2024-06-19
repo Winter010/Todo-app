@@ -73,7 +73,7 @@ function getTaskInfo(event) {
 }
 
 function clearCompletedTasks() {
-	const doneTasks = filteredArrays().completed;
+	const doneTasks = filterArrays().completed;
 	doneTasks.forEach(task => {
 		document.getElementById(`${task.id}`).remove();
 	});
